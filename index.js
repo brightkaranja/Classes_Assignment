@@ -2,7 +2,7 @@
 function FeatureToggle(featureName, isEnabled, userGroupAccess) {
     this.featureName = featureName;
     this.isEnabled = isEnabled;
-    this.userGroupAccess = userGroupAccess || [];
+    this.userGroupAccess = userGroupAccess;
   }
   
   FeatureToggle.prototype.canAccess = function(userRole) {
@@ -11,7 +11,7 @@ function FeatureToggle(featureName, isEnabled, userGroupAccess) {
   
   FeatureToggle.prototype.toggleFeature = function(flag) {
     this.isEnabled = !!flag; 
-    console.log(`Feature '${this.featureName}' is now ${this.isEnabled ? 'enabled' : 'disabled'}.`);
+    console.log(`Feature ${this.featureName}' is now ${this.isEnabled ? 'enabled' : 'disabled'}.`);
   };
   
   const featureA = new FeatureToggle("New Dashboard", false, ["betaTesters", "admins"]);
@@ -19,24 +19,24 @@ function FeatureToggle(featureName, isEnabled, userGroupAccess) {
   const user2 = "betaTesters";
   const user3 = "admins";
   
-  console.log(`User '${user1}' can access '${featureA.featureName}': ${featureA.canAccess(user1)}`);
-  console.log(`User '${user2}' can access '${featureA.featureName}': ${featureA.canAccess(user2)}`);
-  console.log(`User '${user3}' can access '${featureA.featureName}': ${featureA.canAccess(user3)}`);
+  console.log(`${user1} can access ${featureA.featureName}: ${featureA.canAccess(user1)}`);
+  console.log(`${user2} can access ${featureA.featureName}: ${featureA.canAccess(user2)}`);
+  console.log(`${user3} can access ${featureA.featureName}: ${featureA.canAccess(user3)}`);
   
   featureA.toggleFeature(true);
   
-  console.log(`User '${user1}' can access '${featureA.featureName}': ${featureA.canAccess(user1)}`);
-  console.log(`User '${user2}' can access '${featureA.featureName}': ${featureA.canAccess(user2)}`);
-  console.log(`User '${user3}' can access '${featureA.featureName}': ${featureA.canAccess(user3)}`);
+  console.log(`${user1} can access ${featureA.featureName}: ${featureA.canAccess(user1)}`);
+  console.log(`${user2} can access ${featureA.featureName}: ${featureA.canAccess(user2)}`);
+  console.log(`${user3} can access ${featureA.featureName}: ${featureA.canAccess(user3)}`);
   
   function simulateAccess(feature, role) {
     let message;
     if (feature.canAccess(role)) {
-      message = `Access granted to '${role}' for feature '${feature.featureName}'.`;
+      message = `Access granted to ${role} for feature ${feature.featureName}.`;
     } else {
       switch (role) {
         case "regularUser":
-          message = `Sorry, '${role}' does not have access to '${feature.featureName}'.`;
+          message = `Sorry, ${role} does not have access to ${feature.featureName}'.`;
           break;
         case "betaTesters":
           message = `Access denied for '${role}' to '${feature.featureName}'.`;
@@ -60,7 +60,7 @@ class TimeLog {
     constructor(freelancerName, projectDetails, logs) {
         this.freelancerName = freelancerName;
         this.projectDetails = projectDetails;
-        this.logs = logs || [];
+        this.logs = logs;
     }
 
     calculateTotalEarnings() {
@@ -114,8 +114,8 @@ console.log(`Weekly hours exceed 40 (starting 2024-04-29)? ${timelog1.exceedsWee
 class Order {
     constructor(customer, items, status) {
       this.customer = customer;
-      this.items = items || [];
-      this.status = status || "Pending";
+      this.items = items;
+      this.status = status;
     }
   
     computeTotalCost() {
@@ -170,8 +170,8 @@ class Employee {
     constructor(id, name, performanceMetrics, feedback) {
         this.id = id;
         this.name = name;
-        this.performanceMetrics = performanceMetrics || {};
-        this.feedback = feedback || [];
+        this.performanceMetrics = performanceMetrics;
+        this.feedback = feedback;
     }
 
     calculateAverageScore() {
@@ -217,7 +217,7 @@ class Course {
     constructor(title, instructor, students) {
         this.title = title;
         this.instructor = instructor;
-        this.students = students || [];
+        this.students = students;
     }
 
     getCompletedStudents() {
